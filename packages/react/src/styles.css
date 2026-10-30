@@ -25,31 +25,40 @@
 }
 .ak-jump { animation: ak-jump 1.8s infinite; }
 
-/* Mascot */
+/* Mascot: an eye. The pupil's follow-the-cursor offset is set inline (Mascot.tsx);
+   these animate the layers inside it, so both combine. */
 .ak-mascot { display: block; flex: 0 0 auto; overflow: visible; color: var(--primary, #555); }
-.ak-mascot__edge { stroke: color-mix(in oklab, var(--foreground, #222) 70%, transparent); }
-.ak-mascot__ring { stroke: currentColor; transform-box: view-box; transform-origin: 32px 32px; }
-.ak-mascot__ring--1 { opacity: 0.85; }
-.ak-mascot__ring--2 { opacity: 0.6; }
-.ak-mascot__ring--3 { opacity: 0.45; }
-.ak-mascot__core { fill: currentColor; transform-box: view-box; transform-origin: 32.5px 32.5px; }
+.ak-mascot__badge { fill: var(--card, #fff); stroke: color-mix(in oklab, var(--foreground, #222) 18%, transparent); }
+.ak-mascot__white { fill: color-mix(in oklab, var(--card, #fff) 92%, var(--foreground, #222)); }
+.ak-mascot__lid, .ak-mascot__lash { stroke: var(--foreground, #222); }
+.ak-mascot__ring { stroke: color-mix(in oklab, var(--card, #fff) 55%, transparent); }
+.ak-mascot__pupil { fill: var(--foreground, #111); }
+.ak-mascot__glint { fill: #fff; opacity: 0.9; }
+.ak-mascot__eye, .ak-mascot__gaze, .ak-mascot__ring, .ak-mascot__iris, .ak-mascot__pupil { transform-box: view-box; transform-origin: 32px 32px; }
+.ak-mascot__look { transition: transform 0.12s ease-out; }
 
-@keyframes ak-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
-.ak-mascot--idle .ak-mascot__ring--3 { animation: ak-breathe 4.2s ease-in-out infinite; }
+/* Idle: a quick blink now and then. */
+@keyframes ak-blink { 0%, 93%, 100% { transform: scaleY(1); } 96% { transform: scaleY(0.08); } }
+.ak-mascot--idle .ak-mascot__eye { animation: ak-blink 5.2s infinite; }
 
-@keyframes ak-pulse { 0%, 70%, 100% { opacity: 0.25; } 35% { opacity: 1; } }
-.ak-mascot--thinking .ak-mascot__ring { animation: ak-pulse 1.2s ease-in-out infinite; }
-.ak-mascot--thinking .ak-mascot__ring--2 { animation-delay: 0.16s; }
-.ak-mascot--thinking .ak-mascot__ring--3 { animation-delay: 0.32s; }
+/* Thinking: the gaze drifts up and the pupil narrows, like looking for the answer. */
+@keyframes ak-ponder { 0%, 100% { transform: translate(2.5px, -3.5px); } 50% { transform: translate(-2.5px, -4px); } }
+.ak-mascot--thinking .ak-mascot__gaze { animation: ak-ponder 2.4s ease-in-out infinite; }
+.ak-mascot--thinking .ak-mascot__pupil { transform: scale(0.75); }
 
+/* Using a tool: scanning side to side, the iris ring turning. */
+@keyframes ak-scan { 0%, 100% { transform: translateX(-4px); } 50% { transform: translateX(4px); } }
 @keyframes ak-turn { to { transform: rotate(360deg); } }
-.ak-mascot--tool .ak-mascot__ring--3 { animation: ak-turn 1.4s linear infinite; opacity: 0.9; }
+.ak-mascot--tool .ak-mascot__gaze { animation: ak-scan 1.1s ease-in-out infinite; }
+.ak-mascot--tool .ak-mascot__ring { animation: ak-turn 1.6s linear infinite; }
 
-@keyframes ak-beat { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.5); } }
-.ak-mascot--speaking .ak-mascot__core { animation: ak-beat 0.48s ease-in-out infinite; }
+/* Speaking: the iris pulses with the words. */
+@keyframes ak-pulse { 0%, 100% { transform: scale(1); } 45% { transform: scale(1.12); } }
+.ak-mascot--speaking .ak-mascot__iris { animation: ak-pulse 0.5s ease-in-out infinite; }
+.ak-mascot--speaking .ak-mascot__pupil { animation: ak-pulse 0.5s ease-in-out infinite reverse; }
 
 @media (prefers-reduced-motion: reduce) {
-	.ak-rise, .ak-jump, .ak-mascot__ring, .ak-mascot__core { animation: none !important; }
+	.ak-rise, .ak-jump, .ak-mascot * { animation: none !important; transition: none !important; }
 }
 
 /* Markdown answers */

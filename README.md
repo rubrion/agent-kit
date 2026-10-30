@@ -112,7 +112,7 @@ On a site without Tailwind's preflight, import only `tailwindcss/theme` and
   by default); the browser remembers only which thread was open.
 - **Conversations are private** to tenant + person, one agent each; up to 50 per person.
 - **Steps stream as they happen:** reasoning (folded after), one card per tool call (args and
-  result inside), then the text. The mascot follows: idle, thinking, using a tool, speaking.
+  result inside), then the text. The mascot (an eye whose pupil follows the cursor) shows the phase: idle, thinking, using a tool, speaking.
 - **Slim SSE.** Only what the UI draws leaves the agent Worker; prompts and step outputs never do.
 - **Nothing runs until used.** The provider only calls the gateway once the chat box opens or the
   assistant screen shows.
