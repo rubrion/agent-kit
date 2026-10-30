@@ -1,0 +1,14 @@
+{
+  "name": "agent-kit",
+  "private": true,
+  "description": "An embeddable AI assistant for Cloudflare apps: Mastra agent worker, gateway and React chat UI, plus a ready-to-copy template.",
+  "license": "MIT",
+  "workspaces": ["packages/server", "packages/react", "template/agent", "template/web"],
+  "scripts": {
+    "build": "npm run build -w @rubrion/agent-kit-server -w @rubrion/agent-kit-react",
+    "test": "npm test -w @rubrion/agent-kit-server -w @rubrion/agent-kit-react",
+    "check": "npm run build && npm run check -w template/agent -w template/web",
+    "dev": "npm run build && npm run dev -w template/web",
+    "deploy": "npm run build && npm run deploy -w template/agent && npm run deploy -w template/web"
+  }
+}

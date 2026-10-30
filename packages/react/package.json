@@ -1,0 +1,39 @@
+{
+  "name": "@rubrion/agent-kit-react",
+  "version": "0.1.0",
+  "description": "React chat UI for the agent kit: floating chat box, full assistant screen, streamed steps (thinking, tool calls, text).",
+  "license": "MIT",
+  "author": "Rubrion",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    "./styles.css": "./dist/styles.css"
+  },
+  "files": ["dist", "README.md"],
+  "sideEffects": ["*.css"],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css",
+    "test": "vitest run",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "dompurify": "^3.4.17",
+    "marked": "^18.1.2"
+  },
+  "peerDependencies": {
+    "lucide-react": ">=0.400.0",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "lucide-react": "^1.65.0",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "typescript": "^5.9.3",
+    "vitest": "^5.0.5"
+  }
+}

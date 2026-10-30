@@ -1,0 +1,21 @@
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	// Rubrion account (the deployed demo at agent-kit.rubrion.ai). Change or remove in a copy.
+	"account_id": "1da13e1445adbf8765ae19ae46ba7ac8",
+	"name": "agent-kit-demo-agent",
+	"main": "src/index.ts",
+	"compatibility_date": "2026-10-14",
+	// Mastra's server calls createRequire(import.meta.url) at load; the new module
+	// registry makes import.meta.url real in a Worker bundle.
+	"compatibility_flags": ["nodejs_compat", "new_module_registry"],
+	"observability": { "enabled": true },
+	// No public route: the web worker reaches it through a service binding, after
+	// checking who is asking.
+	"workers_dev": false,
+	"preview_urls": false,
+	"ai": { "binding": "AI" },
+	"d1_databases": [
+		// Mastra Memory: the conversations (tables created on first use).
+		{ "binding": "MEMORY", "database_name": "agent-kit-demo-memory", "database_id": "fecb71e7-c6e0-4cac-bde5-779043968cfa" }
+	]
+}

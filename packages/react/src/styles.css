@@ -1,0 +1,60 @@
+/* agent-kit: the few styles Tailwind utilities can't express (markdown, mascot,
+   motion). Colors come from the shadcn/ui tokens (--primary, --muted, --border…). */
+
+@keyframes ak-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.ak-rise { animation: ak-rise 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
+
+/* The corner button jumping for attention: falls fast, rises slow, so the top of the arc hangs. */
+@keyframes ak-jump {
+	0%, 100% { transform: translateY(-22%); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
+	50% { transform: translateY(0); animation-timing-function: cubic-bezier(0, 0, 0.2, 1); }
+}
+.ak-jump { animation: ak-jump 1.8s infinite; }
+
+/* Mascot */
+.ak-mascot { display: block; flex: 0 0 auto; overflow: visible; color: var(--primary, #555); }
+.ak-mascot__edge { stroke: color-mix(in oklab, var(--foreground, #222) 70%, transparent); }
+.ak-mascot__ring { stroke: currentColor; transform-box: view-box; transform-origin: 32px 32px; }
+.ak-mascot__ring--1 { opacity: 0.85; }
+.ak-mascot__ring--2 { opacity: 0.6; }
+.ak-mascot__ring--3 { opacity: 0.45; }
+.ak-mascot__core { fill: currentColor; transform-box: view-box; transform-origin: 32.5px 32.5px; }
+
+@keyframes ak-breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.035); } }
+.ak-mascot--idle .ak-mascot__ring--3 { animation: ak-breathe 4.2s ease-in-out infinite; }
+
+@keyframes ak-pulse { 0%, 70%, 100% { opacity: 0.25; } 35% { opacity: 1; } }
+.ak-mascot--thinking .ak-mascot__ring { animation: ak-pulse 1.2s ease-in-out infinite; }
+.ak-mascot--thinking .ak-mascot__ring--2 { animation-delay: 0.16s; }
+.ak-mascot--thinking .ak-mascot__ring--3 { animation-delay: 0.32s; }
+
+@keyframes ak-turn { to { transform: rotate(360deg); } }
+.ak-mascot--tool .ak-mascot__ring--3 { animation: ak-turn 1.4s linear infinite; opacity: 0.9; }
+
+@keyframes ak-beat { 0%, 100% { transform: scale(1); } 40% { transform: scale(1.5); } }
+.ak-mascot--speaking .ak-mascot__core { animation: ak-beat 0.48s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+	.ak-rise, .ak-jump, .ak-mascot__ring, .ak-mascot__core { animation: none !important; }
+}
+
+/* Markdown answers */
+.ak-md { font-size: 0.875rem; line-height: 1.6; overflow-wrap: anywhere; }
+.ak-md > * + * { margin-top: 0.6em; }
+.ak-md h1, .ak-md h2, .ak-md h3 { font-weight: 600; line-height: 1.3; margin-top: 1em; }
+.ak-md h1 { font-size: 1.15em; } .ak-md h2 { font-size: 1.07em; } .ak-md h3 { font-size: 1em; }
+.ak-md ul, .ak-md ol { padding-left: 1.3em; }
+.ak-md ul { list-style: disc; } .ak-md ol { list-style: decimal; }
+.ak-md li + li { margin-top: 0.2em; }
+.ak-md a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.ak-md strong { font-weight: 600; }
+.ak-md code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.85em; background: var(--muted); border-radius: 4px; padding: 0.1em 0.35em; }
+.ak-md pre { position: relative; background: var(--muted); border-radius: 8px; padding: 0.75em; overflow-x: auto; }
+.ak-md pre code { background: none; padding: 0; }
+.ak-md blockquote { border-left: 3px solid var(--border); padding-left: 0.8em; color: var(--muted-foreground); }
+.ak-md table { width: 100%; border-collapse: collapse; font-size: 0.95em; display: block; overflow-x: auto; }
+.ak-md th, .ak-md td { border: 1px solid var(--border); padding: 0.3em 0.55em; text-align: left; }
+.ak-md th { background: var(--muted); font-weight: 600; }
+.ak-md hr { border: 0; border-top: 1px solid var(--border); }
+.ak-copy { position: absolute; top: 0.4em; right: 0.4em; font-size: 11px; padding: 0.1em 0.5em; border-radius: 4px; border: 1px solid var(--border); background: var(--card); color: var(--muted-foreground); opacity: 0; transition: opacity 0.15s; }
+.ak-md pre:hover .ak-copy, .ak-copy:focus-visible { opacity: 1; }
