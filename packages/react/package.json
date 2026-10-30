@@ -8,11 +8,19 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": { "types": "./dist/index.d.ts", "import": "./dist/index.js" },
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
     "./styles.css": "./dist/styles.css"
   },
-  "files": ["dist", "README.md"],
-  "sideEffects": ["*.css"],
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": [
+    "*.css"
+  ],
   "scripts": {
     "build": "rm -rf dist && tsc -p tsconfig.json && cp src/styles.css dist/styles.css",
     "test": "vitest run",
@@ -35,5 +43,11 @@
     "react-dom": "^19.3.1",
     "typescript": "^5.9.3",
     "vitest": "^5.0.5"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
