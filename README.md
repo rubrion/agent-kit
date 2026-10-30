@@ -102,6 +102,10 @@ they match a shadcn app. Tailwind must scan the package; in your CSS:
 @source "../node_modules/@rubrion/agent-kit-react/dist";
 ```
 
+On a site without Tailwind's preflight, import only `tailwindcss/theme` and
+`tailwindcss/utilities`, limit `@source` to the package, and define the tokens: the kit's roots
+(`.ak`) reset their own elements, so the rest of the page keeps its styles.
+
 ## How it behaves
 
 - **The browser sends only the new question.** Mastra Memory recalls the thread (last 8 messages

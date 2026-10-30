@@ -42,7 +42,7 @@ export function AssistantScreen({ className, panelSide = 'right', greeting, hint
 	);
 
 	return (
-		<div className={cn('flex h-full min-h-0', className)}>
+		<div className={cn('ak flex h-full min-h-0', className)}>
 			<h1 className="sr-only">{t.assistant}</h1>
 			{panelSide === 'left' && aside}
 			<div className="flex min-w-0 flex-1 flex-col">

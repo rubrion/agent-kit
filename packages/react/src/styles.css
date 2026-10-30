@@ -1,6 +1,20 @@
 /* agent-kit: the few styles Tailwind utilities can't express (markdown, mascot,
    motion). Colors come from the shadcn/ui tokens (--primary, --muted, --border…). */
 
+/* The kit's roots carry .ak. On a host without Tailwind's preflight, this resets the
+   elements the components draw, so browser defaults don't show through. In the base
+   layer, so the utilities on each element win. */
+@layer base {
+	:where(.ak, .ak *), :where(.ak, .ak *)::before, :where(.ak, .ak *)::after { box-sizing: border-box; margin: 0; padding: 0; border: 0 solid var(--border, currentColor); }
+	:where(.ak) :where(button, input, textarea, select) { font: inherit; color: inherit; background: transparent; letter-spacing: inherit; }
+	:where(.ak) :where(button, [role="button"]) { cursor: pointer; }
+	:where(.ak) :where(textarea) { resize: none; }
+	:where(.ak) :where(ol, ul, menu) { list-style: none; }
+	:where(.ak) :where(h1, h2, h3, h4, h5, h6) { font-size: inherit; font-weight: inherit; }
+	:where(.ak) :where(svg, img) { display: block; max-width: 100%; }
+	:where(.ak) :where(a) { color: inherit; text-decoration: inherit; }
+}
+
 @keyframes ak-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 .ak-rise { animation: ak-rise 0.32s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 

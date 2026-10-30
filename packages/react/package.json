@@ -1,6 +1,6 @@
 {
   "name": "@rubrion/agent-kit-react",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "React chat UI for the agent kit: floating chat box, full assistant screen, streamed steps (thinking, tool calls, text).",
   "license": "MIT",
   "author": "Rubrion",

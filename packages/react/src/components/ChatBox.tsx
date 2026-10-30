@@ -48,7 +48,7 @@ export function ChatBox({ onExpand, hidden, subtitle, emptyTitle, side = 'right'
 	const jumping = !seen && phase === 'idle';
 
 	return createPortal(
-		<div className={cn('pointer-events-none fixed bottom-4 z-40 flex flex-col gap-3 print:hidden', side === 'right' ? 'right-4 items-end' : 'left-4 items-start')}>
+		<div className={cn('ak pointer-events-none fixed bottom-4 z-40 flex flex-col gap-3 print:hidden', side === 'right' ? 'right-4 items-end' : 'left-4 items-start')}>
 			{open && (
 				<section role="region" aria-label={t.assistant}
 					className="ak-rise pointer-events-auto flex h-[min(560px,calc(100dvh-6rem))] w-[min(400px,calc(100vw-2rem))] flex-col overflow-hidden rounded-xl border bg-card text-card-foreground shadow-2xl">
